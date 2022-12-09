@@ -1,6 +1,45 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import styled from "styled-components";
 import { API } from "../api";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Title = styled.h1``;
+
+const LoginForm = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
+const IdInput = styled.input`
+  margin-bottom: 0.8rem;
+  padding: 0.8rem;
+  font-size: 1.2rem;
+`;
+
+const PwdInput = styled.input`
+  margin-bottom: 0.8rem;
+  padding: 0.8rem;
+  font-size: 1.2rem;
+`;
+
+const LoginBtn = styled.button`
+  padding: 0.8rem;
+  font-size: 1.2rem;
+`;
+
+const Join = styled.h4`
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
 
 export function Login() {
   const [id, setId] = useState("");
@@ -25,8 +64,8 @@ export function Login() {
         if (response.data.access_token) {
           localStorage.setItem("login-token", response.data.access_token);
         }
+        history.push("/todo");
       })
-      .then((response) => history.push("/todo"))
       .catch((error) => {
         console.log(error);
         window.alert("아이디가 틀렸거나 회원이 아닙니다.");
@@ -34,29 +73,28 @@ export function Login() {
   };
 
   return (
-    <>
-      <h1>Login</h1>
-      <form onSubmit={onSubmit}>
-        <label>아이디 </label>
-        <input
+    <Container>
+      <Title>로그인</Title>
+      <LoginForm onSubmit={onSubmit}>
+        <IdInput
           type="email"
-          placeholder="이메일 아이디를 입력하세요."
+          placeholder="이메일 아이디"
           value={id}
           onChange={onIdChange}
         />
-        &nbsp; <label>비밀번호 </label>
-        <input
+        <PwdInput
           type="password"
-          placeholder="비밀번호를 입력하세요."
+          placeholder="8자리 이상의 비밀번호"
           value={password}
           onChange={onPwdChange}
         />
-        <button disabled={!(id.includes("@") && password.length >= 8)}>
+        <LoginBtn disabled={!(id.includes("@") && password.length >= 8)}>
           로그인
-        </button>
-      </form>
-      <br />
-      <Link to="/">회원가입</Link>
-    </>
+        </LoginBtn>
+      </LoginForm>
+      <Join>
+        <Link to="/signup">회원이 아니라면 가입하러 가기</Link>
+      </Join>
+    </Container>
   );
 }
