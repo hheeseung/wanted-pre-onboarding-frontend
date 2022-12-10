@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { API } from "../api";
+import { onLogin } from "../api";
 
 const Container = styled.div`
   display: flex;
@@ -56,19 +56,17 @@ export function Login() {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    API.post("/auth/signin", {
-      email: id,
-      password,
-    })
+    onLogin(id, password)
       .then((response) => {
-        if (response.data.access_token) {
-          localStorage.setItem("login-token", response.data.access_token);
+        const ACCESS_TOKEN = response.data.access_token;
+        if (ACCESS_TOKEN) {
+          localStorage.setItem("login-token", ACCESS_TOKEN);
         }
         history.push("/todo");
       })
       .catch((error) => {
         console.log(error);
-        window.alert("아이디가 틀렸거나 회원이 아닙니다.");
+        window.alert("아이디 또는 비밀번호가 틀렸거나 회원이 아닙니다.");
       });
   };
 
