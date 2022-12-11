@@ -13,6 +13,7 @@ const TodoList = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.5rem;
 `;
 
 const Checkbox = styled.span`
@@ -22,11 +23,13 @@ const Checkbox = styled.span`
 const TodoTitle = styled.li``;
 
 const Title = styled.input<{ isCompleted: boolean; isEdit: boolean }>`
+  font-size: 1rem;
   border: none;
   outline: none;
   width: 250px;
   text-decoration: ${(props) =>
     props.isCompleted && props.isEdit ? "line-through" : "none"};
+  color: ${(props) => (props.isEdit ? "inherit" : "#6495ed")};
   :disabled {
     background-color: inherit;
     color: inherit;
