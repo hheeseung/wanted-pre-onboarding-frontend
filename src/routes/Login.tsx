@@ -64,8 +64,7 @@ export function Login() {
         }
         history.push("/todo");
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         window.alert("아이디 또는 비밀번호가 틀렸거나 회원이 아닙니다.");
       });
   };
