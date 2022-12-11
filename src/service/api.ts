@@ -4,6 +4,8 @@ export const API = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
 });
 
+const ACCESS_TOKEN = localStorage.getItem("login-token");
+
 export const onLogin = (id: string, password: string) => {
   return API.post("/auth/signin", {
     headers: { "Content-Type": "application/json" },
@@ -26,7 +28,7 @@ export const createTodos = (todo: string) => {
     { todo },
     {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("login-token")}`,
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
         "Content-Type": "application/json",
       },
     }
@@ -35,7 +37,7 @@ export const createTodos = (todo: string) => {
 
 export const getTodos = () => {
   return API.get("/todos", {
-    headers: { Authorization: `Bearer ${localStorage.getItem("login-token")}` },
+    headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
   });
 };
 
@@ -45,7 +47,7 @@ export const updateTodo = (id: number, todo: string, isCompleted: boolean) => {
     { todo, isCompleted },
     {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("login-token")}`,
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
         "Content-Type": "application/json",
       },
     }
@@ -54,6 +56,6 @@ export const updateTodo = (id: number, todo: string, isCompleted: boolean) => {
 
 export const deleteTodo = (id: number) => {
   return API.delete(`/todos/${id}`, {
-    headers: { Authorization: `Bearer ${localStorage.getItem("login-token")}` },
+    headers: { Authorization: `Bearer ${ACCESS_TOKEN}` },
   });
 };
