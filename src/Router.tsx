@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch } from "react-router-dom";
-import { PrivateRoute } from "./components/PrivateRoute";
-import { PublicRoute } from "./components/PublicRoute";
 import { Login } from "./routes/Login";
+import { PrivateRoute } from "./routes/redirect/PrivateRoute";
+import { PublicRoute } from "./routes/redirect/PublicRoute";
 import { Signup } from "./routes/Signup";
 import { Todo } from "./routes/Todo";
 

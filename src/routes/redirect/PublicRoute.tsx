@@ -1,5 +1,5 @@
 import { Route, Redirect, RouteProps } from "react-router-dom";
-import { isLogin } from "../utils/isLogin";
+import { isLogin } from "../../utils/isLogin";
 
 interface IPublicRoute extends RouteProps {
   component: any;
