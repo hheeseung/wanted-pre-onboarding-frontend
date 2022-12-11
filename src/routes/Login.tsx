@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { onLogin } from "../api";
+import { onLogin } from "../service/api";
 
 const Container = styled.div`
   display: flex;
