@@ -29,10 +29,10 @@ const Title = styled.input<{ isCompleted: boolean; isEdit: boolean }>`
   width: 250px;
   text-decoration: ${(props) =>
     props.isCompleted && props.isEdit ? "line-through" : "none"};
-  color: ${(props) => (props.isEdit ? "inherit" : "#6495ed")};
+  color: ${(props) => (props.isEdit ? "#000" : "#6495ed")};
   :disabled {
     background-color: inherit;
-    color: inherit;
+    color: #000;
   }
 `;
 
