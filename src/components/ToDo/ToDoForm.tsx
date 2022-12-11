@@ -27,6 +27,9 @@ export function ToDoForm() {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (newTodo === "") {
+      return;
+    }
     createTodos(newTodo);
     setNewTodo("");
   };
