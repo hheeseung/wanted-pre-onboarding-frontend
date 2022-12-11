@@ -65,8 +65,10 @@ export function Signup() {
           window.alert("회원가입 실패");
         }
       })
-      .catch((error) => {
-        window.alert(`${error}. 다시 시도해주세요.`);
+      .catch(() => {
+        window.alert(
+          `가입 에러: 이미 있는 계정일 수도 있습니다. 다른 아이디로 다시 시도해주세요.`
+        );
       });
   };
 
