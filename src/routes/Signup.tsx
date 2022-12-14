@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { onSignup } from "../../service/api";
+import { onSignup } from "../service/api";
 
 const Container = styled.div`
   display: flex;
